@@ -8,18 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
+  @State private var isTitleLarge: Bool = false
+  
+  var body: some View {
+    VStack {
+      Text("Weclome to WWDC 2022!")
+        .font(isTitleLarge ? .largeTitle : .title2)
+        .padding()
+        .background(
+          RoundedRectangle(cornerRadius: 10)
+            .fill(isTitleLarge ? Color.orange.gradient : Color.cyan.gradient)
+        )
+        .foregroundStyle( isTitleLarge ?
+                      Color.white.shadow(.drop(radius: 2, x: 2.0, y: 2.0)) :
+                            Color.black.shadow(.drop(color: .white, radius: 2, x: 2.0, y: 2.0))
+        )
+      Spacer()
+      WaveButton(text: "Change Title") {
+        withAnimation { isTitleLarge.toggle() }
+        
+      }
+      Spacer()
     }
+    .padding()
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }
