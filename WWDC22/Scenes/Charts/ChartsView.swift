@@ -49,20 +49,25 @@ struct ChartsView<ViewModel: ToDoListViewModel>: View {
         ForEach(groups) { group in
           BarMark(
             x: .value("Project", group.project.rawValue),
-            y: .value("Amount", group.quantity)
+            y: .value("Amount", group.quantity),
+            stacking: .unstacked
           )
           .foregroundStyle(by: .value("Project", group.project.rawValue))
         }
+        .opacity(0.3)
         ForEach(completedGroups) { group in
           BarMark(
             x: .value("Project", group.project.rawValue),
-            y: .value("Amount", group.quantity)
+            y: .value("Amount", group.quantity),
+            stacking: .unstacked
           )
           .foregroundStyle(by: .value("Project", group.project.rawValue))
-          .opacity(0.3)
         }
       }
       .chartLegend(.hidden)
+      .chartYAxis {
+        AxisMarks(position: .leading)
+      }
       Spacer()
       Chart {
         ForEach(groups) { group in
@@ -81,6 +86,7 @@ struct ChartsView<ViewModel: ToDoListViewModel>: View {
         .foregroundStyle(Color.green)
       }
     }
+    .padding()
   }
 }
 
