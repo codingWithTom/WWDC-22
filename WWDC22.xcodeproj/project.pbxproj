@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		404991DE28B6FA920051C7C2 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404991DD28B6FA920051C7C2 /* ChartsView.swift */; };
 		4079653D28614FFB00D7141C /* WaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4079653C28614FFB00D7141C /* WaveButton.swift */; };
+		40B1ACBE28B5A9B5003CE77A /* ToDoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1ACBD28B5A9B5003CE77A /* ToDoService.swift */; };
+		40B1ACC128B5A9E4003CE77A /* ToDoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1ACC028B5A9E4003CE77A /* ToDoView.swift */; };
+		40B1ACC428B5AD17003CE77A /* ToDoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1ACC328B5AD17003CE77A /* ToDoList.swift */; };
+		40B1ACC628B5AD26003CE77A /* ToDoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1ACC528B5AD26003CE77A /* ToDoListViewModel.swift */; };
 		40D1D26D28614BAA00EB772F /* WWDC22App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1D26C28614BAA00EB772F /* WWDC22App.swift */; };
 		40D1D26F28614BAA00EB772F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1D26E28614BAA00EB772F /* ContentView.swift */; };
 		40D1D27128614BAC00EB772F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40D1D27028614BAC00EB772F /* Assets.xcassets */; };
@@ -15,7 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		404991DD28B6FA920051C7C2 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		4079653C28614FFB00D7141C /* WaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveButton.swift; sourceTree = "<group>"; };
+		40B1ACBD28B5A9B5003CE77A /* ToDoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoService.swift; sourceTree = "<group>"; };
+		40B1ACC028B5A9E4003CE77A /* ToDoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoView.swift; sourceTree = "<group>"; };
+		40B1ACC328B5AD17003CE77A /* ToDoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoList.swift; sourceTree = "<group>"; };
+		40B1ACC528B5AD26003CE77A /* ToDoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewModel.swift; sourceTree = "<group>"; };
 		40D1D26928614BAA00EB772F /* WWDC22.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WWDC22.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40D1D26C28614BAA00EB772F /* WWDC22App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WWDC22App.swift; sourceTree = "<group>"; };
 		40D1D26E28614BAA00EB772F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,12 +45,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		404991DC28B6FA870051C7C2 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				404991DD28B6FA920051C7C2 /* ChartsView.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
 		4079653B28614FEC00D7141C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4079653C28614FFB00D7141C /* WaveButton.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		40B1ACBC28B5A9AE003CE77A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				40B1ACBD28B5A9B5003CE77A /* ToDoService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		40B1ACBF28B5A9D8003CE77A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				404991DC28B6FA870051C7C2 /* Charts */,
+				40B1ACC228B5AD0C003CE77A /* ToDo */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		40B1ACC228B5AD0C003CE77A /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				40B1ACC028B5A9E4003CE77A /* ToDoView.swift */,
+				40B1ACC328B5AD17003CE77A /* ToDoList.swift */,
+				40B1ACC528B5AD26003CE77A /* ToDoListViewModel.swift */,
+			);
+			path = ToDo;
 			sourceTree = "<group>";
 		};
 		40D1D26028614BAA00EB772F = {
@@ -62,6 +107,8 @@
 		40D1D26B28614BAA00EB772F /* WWDC22 */ = {
 			isa = PBXGroup;
 			children = (
+				40B1ACBF28B5A9D8003CE77A /* Scenes */,
+				40B1ACBC28B5A9AE003CE77A /* Services */,
 				4079653B28614FEC00D7141C /* Views */,
 				40D1D26C28614BAA00EB772F /* WWDC22App.swift */,
 				40D1D26E28614BAA00EB772F /* ContentView.swift */,
@@ -150,9 +197,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40B1ACC628B5AD26003CE77A /* ToDoListViewModel.swift in Sources */,
 				40D1D26F28614BAA00EB772F /* ContentView.swift in Sources */,
+				40B1ACC428B5AD17003CE77A /* ToDoList.swift in Sources */,
+				404991DE28B6FA920051C7C2 /* ChartsView.swift in Sources */,
 				4079653D28614FFB00D7141C /* WaveButton.swift in Sources */,
 				40D1D26D28614BAA00EB772F /* WWDC22App.swift in Sources */,
+				40B1ACBE28B5A9B5003CE77A /* ToDoService.swift in Sources */,
+				40B1ACC128B5A9E4003CE77A /* ToDoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

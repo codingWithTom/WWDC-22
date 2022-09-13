@@ -8,6 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+  var body: some View {
+    TabView {
+      WelcomeView()
+        .tabItem {Label("Welcome", systemImage: "person.crop.circle.fill.badge.checkmark") }
+      ToDoList(viewModel: ToDoListViewModelAdapter())
+        .tabItem {Label("ToDo's", systemImage: "rectangle.and.pencil.and.ellipsis") }
+      ChartsView(viewModel: ToDoListViewModelAdapter())
+        .tabItem {Label("Charts", systemImage: "chart.bar.xaxis") }
+    }
+  }
+}
+
+private struct WelcomeView: View {
   @State private var isTitleLarge: Bool = false
   
   var body: some View {
