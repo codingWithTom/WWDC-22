@@ -22,7 +22,7 @@ struct TimelineCharts<ViewModel: ToDoListViewModel>: View {
   
   @ObservedObject var viewModel: ViewModel
   @State private var mode: Mode = .month
-  @Environment(\.horizontalSizeClass) private var hSizeClass
+  @Environment(\.verticalSizeClass) private var vSizeClass
   
   var todosOverTime: [ToDoPerDate] {
     let groupedTodos = viewModel.toDos.groupBy(keyPath: \.finishedOnWithoutTime)
@@ -51,6 +51,18 @@ struct TimelineCharts<ViewModel: ToDoListViewModel>: View {
     }.sorted { $0.date < $1.date }
   }
   
+  var oneYearBefore: Date {
+    let calendar = Calendar.current
+    let date = yearlyTodosOverTime.min { $0.date < $1.date }?.date ?? Date()
+    return calendar.date(byAdding: .year, value: -1, to: date) ?? Date()
+  }
+  
+  var oneYearAfter: Date {
+    let calendar = Calendar.current
+    let date = yearlyTodosOverTime.max { $0.date < $1.date }?.date ?? Date()
+    return calendar.date(byAdding: .year, value: 1, to: date) ?? Date()
+  }
+  
   var body: some View {
     VStack {
       Picker("", selection: $mode.animation()) {
@@ -62,8 +74,8 @@ struct TimelineCharts<ViewModel: ToDoListViewModel>: View {
           .tag(Mode.year)
       }
       .pickerStyle(SegmentedPickerStyle())
-      Chart {
-        if [.month, .quarter].contains(mode) {
+      if [.month, .quarter].contains(mode) {
+        Chart {
           let todos = mode == .month ? todosOverTime : quarterlyTodosOverTime
           ForEach(todos.indices, id: \.self) { index in
             let todosPerDate = todos[index]
@@ -78,41 +90,50 @@ struct TimelineCharts<ViewModel: ToDoListViewModel>: View {
             )
             .foregroundStyle(Color.orange)
           }
-        } else {
-          ForEach(yearlyTodosOverTime.indices, id: \.self) { index in
-            let todosPerDate = todosOverTime[index]
-            BarMark(
-              x: .value("Date", todosPerDate.date),
-              y: .value("Quantity", todosPerDate.todos.count)
-            )
-          }
         }
-      }
-      .chartXAxis {
-        switch mode {
-        case .month:
-          AxisMarks(values: .stride(by: .month)) { _ in
-            AxisValueLabel(format: .dateTime.month(
-              hSizeClass == .compact ? .narrow : .abbreviated)
-            )
-          }
-        case .quarter:
-          AxisMarks(values: .stride(by: .month)) { value in
-            if let date = value.as(Date.self),
-               date.month() % 3 == 0 /* Beginning of Quarter */{
-              AxisGridLine().foregroundStyle(Color.blue)
-              AxisTick()
-              AxisValueLabel(format: .dateTime.month(.wide))
-            } else {
-              AxisGridLine()
+        .chartXAxis {
+          if mode == .month {
+            AxisMarks(values: .stride(by: .month)) { _ in
+              AxisValueLabel(format: .dateTime.month(
+                vSizeClass == .regular ? .narrow : .abbreviated)
+              )
+            }
+          } else {
+            AxisMarks(values: .stride(by: .month)) { value in
+              if let date = value.as(Date.self),
+                 date.month() % 3 == 0 /* Beginning of Quarter */{
+                AxisGridLine().foregroundStyle(Color.blue)
+                AxisTick()
+                AxisValueLabel(format: .dateTime.month(.wide))
+              } else {
+                AxisGridLine()
+              }
             }
           }
-        case .year:
+        }
+      } else {
+        Chart {
+          ForEach(yearlyTodosOverTime.indices, id: \.self) { index in
+            let todosPerDate = yearlyTodosOverTime[index]
+            BarMark(
+              x: .value("Date", todosPerDate.date),
+              y: .value("Quantity", todosPerDate.todos.count),
+              width: 100
+            )
+            .foregroundStyle(by: .value("Year", "\(todosPerDate.date.year())"))
+          }
+        }
+        .chartXAxis {
           AxisMarks(values: .stride(by: .year))
         }
+        .chartXScale(domain: oneYearBefore ... oneYearAfter)
+        .chartForegroundStyleScale(
+          ["2021": Color.orange, "2022": Color.purple]
+        )
+        .chartLegend(.hidden)
       }
     }
-    .padding(.horizontal)
+    .padding()
   }
 }
 

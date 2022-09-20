@@ -18,6 +18,11 @@ extension Date {
     return calendar.dateComponents([.month], from: self).month ?? -1
   }
   
+  func year() -> Int {
+    let calendar = Calendar.current
+    return calendar.dateComponents([.year], from: self).year ?? -1
+  }
+  
   func dateByYear() -> Date {
     let calendar = Calendar.current
     return calendar.date(from: calendar.dateComponents([.year], from: self)) ?? self
