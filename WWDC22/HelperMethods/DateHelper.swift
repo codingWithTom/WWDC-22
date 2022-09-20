@@ -12,4 +12,14 @@ extension Date {
     let calendar = Calendar.current
     return calendar.date(from: calendar.dateComponents([.year, .month, .day], from: self)) ?? self
   }
+  
+  func month() -> Int {
+    let calendar = Calendar.current
+    return calendar.dateComponents([.month], from: self).month ?? -1
+  }
+  
+  func dateByYear() -> Date {
+    let calendar = Calendar.current
+    return calendar.date(from: calendar.dateComponents([.year], from: self)) ?? self
+  }
 }

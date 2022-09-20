@@ -44,7 +44,7 @@ final class ToDoServiceAdapter: ToDoService {
   }
   
   private init() {
-    currentValueToDos.value = getMockData()
+    currentValueToDos.value = getMockToDos()
   }
   
   func add(toDo: ToDo) {
