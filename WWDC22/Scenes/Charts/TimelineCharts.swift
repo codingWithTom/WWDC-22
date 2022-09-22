@@ -65,7 +65,7 @@ struct TimelineCharts<ViewModel: ToDoListViewModel>: View {
   
   var body: some View {
     VStack {
-      Picker("", selection: $mode.animation()) {
+      Picker("", selection: $mode.animation(.spring(dampingFraction: 0.4))) {
         Text("Month")
           .tag(Mode.month)
         Text("Quarter")
