@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4022100528D8DC3600C085CE /* TimelineCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022100428D8DC3600C085CE /* TimelineCharts.swift */; };
+		4022100828D8DD8400C085CE /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022100728D8DD8400C085CE /* DateHelper.swift */; };
+		4022100A28D8DDDC00C085CE /* ArrayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4022100928D8DDDC00C085CE /* ArrayHelper.swift */; };
 		404991DE28B6FA920051C7C2 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404991DD28B6FA920051C7C2 /* ChartsView.swift */; };
 		4079653D28614FFB00D7141C /* WaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4079653C28614FFB00D7141C /* WaveButton.swift */; };
 		40B1ACBE28B5A9B5003CE77A /* ToDoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B1ACBD28B5A9B5003CE77A /* ToDoService.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4022100428D8DC3600C085CE /* TimelineCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCharts.swift; sourceTree = "<group>"; };
+		4022100728D8DD8400C085CE /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		4022100928D8DDDC00C085CE /* ArrayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayHelper.swift; sourceTree = "<group>"; };
 		404991DD28B6FA920051C7C2 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		4079653C28614FFB00D7141C /* WaveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveButton.swift; sourceTree = "<group>"; };
 		40B1ACBD28B5A9B5003CE77A /* ToDoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoService.swift; sourceTree = "<group>"; };
@@ -45,10 +51,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4022100628D8DD7A00C085CE /* HelperMethods */ = {
+			isa = PBXGroup;
+			children = (
+				4022100728D8DD8400C085CE /* DateHelper.swift */,
+				4022100928D8DDDC00C085CE /* ArrayHelper.swift */,
+			);
+			path = HelperMethods;
+			sourceTree = "<group>";
+		};
 		404991DC28B6FA870051C7C2 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
 				404991DD28B6FA920051C7C2 /* ChartsView.swift */,
+				4022100428D8DC3600C085CE /* TimelineCharts.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -107,6 +123,7 @@
 		40D1D26B28614BAA00EB772F /* WWDC22 */ = {
 			isa = PBXGroup;
 			children = (
+				4022100628D8DD7A00C085CE /* HelperMethods */,
 				40B1ACBF28B5A9D8003CE77A /* Scenes */,
 				40B1ACBC28B5A9AE003CE77A /* Services */,
 				4079653B28614FEC00D7141C /* Views */,
@@ -197,10 +214,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4022100528D8DC3600C085CE /* TimelineCharts.swift in Sources */,
 				40B1ACC628B5AD26003CE77A /* ToDoListViewModel.swift in Sources */,
 				40D1D26F28614BAA00EB772F /* ContentView.swift in Sources */,
 				40B1ACC428B5AD17003CE77A /* ToDoList.swift in Sources */,
+				4022100A28D8DDDC00C085CE /* ArrayHelper.swift in Sources */,
 				404991DE28B6FA920051C7C2 /* ChartsView.swift in Sources */,
+				4022100828D8DD8400C085CE /* DateHelper.swift in Sources */,
 				4079653D28614FFB00D7141C /* WaveButton.swift in Sources */,
 				40D1D26D28614BAA00EB772F /* WWDC22App.swift in Sources */,
 				40B1ACBE28B5A9B5003CE77A /* ToDoService.swift in Sources */,

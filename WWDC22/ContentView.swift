@@ -16,6 +16,8 @@ struct ContentView: View {
         .tabItem {Label("ToDo's", systemImage: "rectangle.and.pencil.and.ellipsis") }
       ChartsView(viewModel: ToDoListViewModelAdapter())
         .tabItem {Label("Charts", systemImage: "chart.bar.xaxis") }
+      TimelineCharts(viewModel: ToDoListViewModelAdapter())
+        .tabItem {Label("Timeline", systemImage: "deskclock.fill") }
     }
   }
 }

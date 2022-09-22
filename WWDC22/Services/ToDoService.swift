@@ -27,6 +27,7 @@ struct ToDo: Identifiable {
   let priority: Priority
   let project: Project
   var finishedOn: Date?
+  var finishedOnWithoutTime: Date? { finishedOn?.dateWithoutTime() }
   var isDone: Bool { finishedOn != nil }
 }
 
@@ -43,7 +44,7 @@ final class ToDoServiceAdapter: ToDoService {
   }
   
   private init() {
-    mockData()
+    currentValueToDos.value = getMockToDos()
   }
   
   func add(toDo: ToDo) {
@@ -54,7 +55,7 @@ final class ToDoServiceAdapter: ToDoService {
 }
 
 private extension ToDoServiceAdapter {
-  func mockData() {
+  func getMockData() -> [ToDo] {
     var tasks: [ToDo] = []
     tasks.append(ToDo(title: "Take out trash ", priority: .medium, project: .personal))
     tasks.append(ToDo(title: "Renew insurance", priority: .high, project: .personal))
@@ -79,11 +80,30 @@ private extension ToDoServiceAdapter {
     tasks.append(ToDo(title: "Get a dog 🐶", priority: .high, project: .wishList))
     tasks.append(ToDo(title: "Buy a boat ⛵️", priority: .low, project: .wishList))
     tasks.append(ToDo(title: "Get a cat 🐈", priority: .high, project: .wishList, finishedOn: pastDate()))
-    currentValueToDos.value = tasks
+    return tasks
   }
   
   func pastDate() -> Date {
     let calendar = Calendar.current
     return calendar.date(byAdding: .day, value: Int.random(in: -7 ... -1), to: Date()) ?? Date()
+  }
+}
+
+extension ToDoServiceAdapter {
+  func getMockToDos() -> [ToDo] {
+    let todos = getMockData()
+    return todos.flatMap { todo in
+      (1 ... 10).map { index in
+        ToDo(title: "\(todo.title) \(index)",
+             priority: todo.priority,
+             project: todo.project,
+             finishedOn: dateInPastMonth())
+      }
+    }
+  }
+  
+  private func dateInPastMonth() -> Date {
+    let calendar = Calendar.current
+    return calendar.date(byAdding: .month, value: Int.random(in: -11 ... 0), to: Date()) ?? Date()
   }
 }
